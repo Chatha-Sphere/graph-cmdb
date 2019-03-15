@@ -1,0 +1,20 @@
+id,name,type,location,description,access_rights,admin,url
+1,Sharepoint,storage,?,storage of internally shared documents,internal
+2,S3 Buckets,storage,CKM S3,stores candidate interview challenge
+3,CKMnet Shared Services,database,CKM RDS,Primary internal database,restricted
+4,Tk Demo DB,database,CKM RDS,Tk specific,restricted,mvanloon
+5,Connect DB,database,CKM RDS,AWS Connect project-specific,restricted
+6,Rancher MySQL,database,?,Rancher needs it!,restricted
+7,Company website,web app,CKM EC2,public-facing website,public,cgonzalez,www.ckmanalytix.com
+8,Calendar app,web app,Rancher,PTO/Flextime management,internal,rgrado,calendar.ckmnet.co
+9,Replicon,web app,external,expenses management,internal,cmorikawa,na1.replicon.com/CKMAdvisors/main.aspx
+10,Mattermost,web app,CKM EC2,internal communication,internal
+11,Mentorship,web app,Rancher,Mentorship program,internal,rgrado,mentorship.ckmnet.co
+12,Rancher,web app,CKM EC2,Host of several internal apps,restricted,
+13,Recruitment,web app,Rancher,platform for recruitment pipeline,internal
+14,Gitlab,web app,CKM EC2,company code repository,internal
+15,Munki,server,IT Closet,mac mini server running  Managed Software Center,restricted,nhartman
+16,Domain Controller,server,IT Closet,windows machine running AD Domain Services,restricted,cgonzalez
+17,Open VPN,router,IT Closet,operates company private network,restricted,gveltri
+18,Taiga,web app,Rancher,keeps 'em busy,who'd want to?,nchatha,taiga.ckmnet.co
+19,Active Directory,directory,IT Closet,firm user authentication service,restricted,cgonzalez
