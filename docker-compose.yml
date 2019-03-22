@@ -20,12 +20,12 @@ services:
             - 7474:7474
             - 7687:7687
         volumes:
-            - .data:/data
-            - .logs:/logs
-            - .import:/var/lib/neo4j/import
-            - .start_db.sh:/start_db.sh
+            - ./db/data:/data
+            - ./db/logs:/logs
+            - ./db/import:/var/lib/neo4j/import
+            - ./db/start_db.sh:/var/lib/neo4j/start_db.sh
         environment:
             - NEO4J_AUTH=none
-        command:
-          -start_db.sh
+        # command:
+        #   - ls -lah
 
