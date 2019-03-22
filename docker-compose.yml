@@ -1,0 +1,31 @@
+version: "3.3"
+
+services:
+    app:
+        restart: always
+        build: .
+        ports:
+            - 5000:5000
+        env_file:
+            - .env
+        environment:
+            - FLASK_APP=app.py
+            - FLASK_ENV=development
+        container_name: "it_cmdb"
+    db:
+        container_name: "graph_db"
+        restart: always
+        image: neo4j:latest
+        ports:
+            - 7474:7474
+            - 7687:7687
+        volumes:
+            - .data:/data
+            - .logs:/logs
+            - .import:/var/lib/neo4j/import
+            - .start_db.sh:/start_db.sh
+        environment:
+            - NEO4J_AUTH=none
+        command:
+          -start_db.sh
+
