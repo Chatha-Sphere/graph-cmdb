@@ -3,7 +3,7 @@ version: "3.3"
 services:
     app:
         restart: always
-        build: .
+        build: ./app
         ports:
             - 5000:5000
         env_file:
@@ -16,6 +16,9 @@ services:
         container_name: "it_cmdb"
         volumes:
             - ./app:/app
+        depends_on:
+            - db
+        command: ["sh", "start.sh"]
     db:
         container_name: "graph_db"
         restart: always
