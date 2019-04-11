@@ -42,7 +42,7 @@ def index():
 
 #will probably stick with method 1 for the time being
 
-@app.route("/all_assets")
+@app.route("/api/all_assets")
 def all_assets():
     db = get_db()
     query = "match(a:Asset) return a"
@@ -54,5 +54,20 @@ def all_assets():
     #return jsonify({'all_nodes':all_nodes})
     return jsonify(all_assets)
 
+@app.route("/api/create_asset/<id>", methods=['GET', 'POST'])
+def create_asset(id):
+    content = request
+    asset_id = content.get('name')
+    asset_name = content.get('id')
+
+    db = get_db()
+    db.run("createAssetQuery")
+
 if __name__ == '__main__':
     app.run(debug=True,host='0.0.0.0')
+
+#print("creating asset {}, id {}".format(content['name'], content['id']))
+
+#with get_db() as session:
+
+#create_asset2/?name=bob&id=1
