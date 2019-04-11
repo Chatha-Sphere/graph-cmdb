@@ -30,8 +30,9 @@ services:
             - ./db/logs:/logs
             - ./db/import:/var/lib/neo4j/import
             - ./db/start_db.sh:/var/lib/neo4j/start_db.sh
-            - ./db/conf:/var/lib/neo4j/conf
+            - ./db/conf:/conf
         environment:
             - NEO4J_AUTH=none
-
-    
+            - NEO4J_dbms_connectors_default__listen__address=0.0.0.0
+            - NEO4J_dbms_connector_bolt_listen__address=0.0.0.0:7687
+            - NEO4J_dbms_connector_http_listen__address=0.0.0.0:7474

@@ -1,17 +1,19 @@
 import os
 from flask import Flask, g, Response, request
-from neo4j import GraphDatabase, basic_auth
+from neo4j.v1 import GraphDatabase, basic_auth
+#from py2neo import Graph
 
 app = Flask(__name__)
 
 #configuration
-NEO4J_URI = "bolt://0.0.0.0:7687"
+NEO4J_URI = "bolt://db:7687"
 NEO4J_USER = "neo4j"
 NEO4J_PASSWORD = os.getenv("NEO4J_PASSWORD")
 
+
 #db connect
-#print(NEO4J_PASSWORD)
-driver = GraphDatabase.driver(NEO4J_URI, auth=basic_auth(NEO4J_USER, NEO4J_PASSWORD))
+driver = GraphDatabase.driver(NEO4J_URI, auth=basic_auth(NEO4J_USER, NEO4J_PASSWORD), encrypted=False)
+driver.session()
 
 def get_db():
     if not hasattr(g, 'neo4j_db'):
@@ -25,7 +27,7 @@ def close_db(error):
         
 @app.route('/')
 def hello_world():
-    return 'Hello, Worlc!'
+    return 'Hello, World!'
 
 # @app.route("/graph")
 # def get_graph():
