@@ -1,0 +1,14 @@
+<html>
+    <head>
+      {% if title %}
+      <title>{{ title }} - CKM CMDB</title>
+      {% else %}
+      <title>Welcome to CKM CMDB</title>
+      {% endif %}
+    </head>
+    <body>
+        <div>CKM CMDB: <a href="/index">Home</a></div>
+        <hr>
+        {% block content %}{% endblock %}
+    </body>
+</html>

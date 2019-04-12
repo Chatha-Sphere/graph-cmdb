@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h4>Create New Dependency</h4>
+    <form action="" method="post" novalidate>
+        <div class="create-form">
+            <label for="childid">Child ID: </label>
+            <input type="text" name="childid" id="childid" required>
+        </div>
+        <div class="create-form">
+            <label for="parentid">Parent ID: </label>
+            <input type="text" name="parentid" id="parentid" required>
+        </div>
+        <div class="create-form">
+            <label for="dependencytype">Type</label>
+            <input type="text" name="dependencytype" id="dependencytype" required>
+        </div>
+        <div class="create-form">
+            <input type="submit" value="Create Dependency">
+        </div>
+    </form>
+{% endblock %}

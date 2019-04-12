@@ -1,5 +1,5 @@
 import os
-from flask import Flask, g, Response, request, jsonify
+from flask import Flask, g, Response, request, jsonify, render_template
 from neo4j.v1 import GraphDatabase, basic_auth
 #from py2neo import Graph
 
@@ -25,8 +25,9 @@ def close_db(error):
         g.neo4j_db.close()
         
 @app.route('/')
+@app.route('/index')
 def index():
-    return 'Welcome to the CKM IT CMDB!'
+    return render_template('index.html', title='Home')
 
 #sessions and transactions:
 # method 1: 
@@ -54,14 +55,30 @@ def all_assets():
     #return jsonify({'all_nodes':all_nodes})
     return jsonify(all_assets)
 
-@app.route("/api/create_asset/<id>", methods=['GET', 'POST'])
-def create_asset(id):
-    content = request
-    asset_id = content.get('name')
-    asset_name = content.get('id')
+@app.route("/admin")
+def admin():
+    return render_template('admin.html')
 
-    db = get_db()
-    db.run("createAssetQuery")
+@app.route("/admin/create_asset")
+def create_asset():
+    return render_template('create_asset.html')
+
+@app.route("/admin/create_hardware")
+def create_hardware():
+    return render_template("create_hardware.html")
+
+@app.route("/admin/create_dependency")
+def create_dependency():
+    return render_template('create_dependency.html')
+
+# @app.route("/api/create_asset/<id>", methods=['GET', 'POST'])
+# def create_asset(id):
+#     content = request
+#     asset_id = content.get('name')
+#     asset_name = content.get('id')
+
+#     db = get_db()
+#     db.run("createAssetQuery")
 
 if __name__ == '__main__':
     app.run(debug=True,host='0.0.0.0')
