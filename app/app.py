@@ -1,21 +1,18 @@
 import os
+from config import Config
 from flask import Flask, g, Response, request, jsonify, render_template, abort
-from py2neo import Graph
+from neo4j import GraphDatabase, basic_auth
 from forms import AssetForm, HardwareForm, DependencyForm
 #from py2neo import Graph
 
 app = Flask(__name__)
-
-#configuration
-NEO4J_URI = "bolt://db:7687"
-NEO4J_USER = "neo4j"
-NEO4J_PASSWORD = os.getenv("NEO4J_PASSWORD")
-SECRET_KEY = os.urandom(32)
-app.config['SECRET_KEY'] = SECRET_KEY
+app.config.from_object(Config)
 
 #db connection
-# driver = GraphDatabase.driver(NEO4J_URI, auth=basic_auth(NEO4J_USER, NEO4J_PASSWORD), encrypted=False)
-db = Graph(bolt = True, host='db', post='7687', user = NEO4J_USER, password=NEO4J_PASSWORD)
+driver = GraphDatabase.driver(app.config['NEO4J_URI'], 
+    auth=basic_auth(app.config['NEO4J_USER'], app.config['NEO4J_PASSWORD']), 
+    encrypted=False)
+#db = Graph(bolt = True, host='db', post='7687', user = NEO4J_USER, password=NEO4J_PASSWORD)
 
 def get_db():
     if not hasattr(g, 'neo4j_db'):

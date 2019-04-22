@@ -1,6 +1,8 @@
 from flask_wtf import FlaskForm
 from wtforms import Form, IntegerField, StringField, SubmitField, validators
 
+
+#do i need an id_ field? or can the ORM generate automatically
 class AssetForm(FlaskForm):
     id_ = IntegerField("ID", [validators.InputRequired()])
     name = StringField("Name", [validators.InputRequired()])
