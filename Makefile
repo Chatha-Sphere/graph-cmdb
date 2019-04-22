@@ -8,3 +8,7 @@ rundb:
 	--name="curious_george" \
 	neo4j
 	echo "done"
+build:
+    docker-compose build
+run:
+    docker-compose run -d

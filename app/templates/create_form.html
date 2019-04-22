@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h4>Create New {{ entity_name }}</h4>
+    <form action="{{ url_for('create_asset') }}" method="POST" novalidate>
+        {{ form.csrf_token }}
+        {% for field in form if field.widget.input_type != 'hidden'%}
+            <p>{{ field.label }} {{ field(size=20) }}</p>
+        {% endfor %}
+    </form>
+{% endblock %}
