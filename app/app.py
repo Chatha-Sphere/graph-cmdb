@@ -1,6 +1,6 @@
 import os
 from config import Config
-from flask import Flask, g, Response, request, jsonify, render_template, abort
+from flask import Flask, g, Response, request, jsonify, render_template, abort, flash, redirect, url_for
 from neo4j import GraphDatabase, basic_auth
 from forms import AssetForm, HardwareForm, DependencyForm
 #from py2neo import Graph
@@ -74,6 +74,10 @@ def create_entity(entity):
     form = entity_dict[entity][1]()
     if form.validate_on_submit():
         print(request)
+        flash("New {} added!".format(name.lower()), 'success')
+        return redirect(url_for('admin'))
+    else:
+        flash("Error! Input could not be validated", 'error')
     return render_template('create_form.html', entity=entity, entity_name=name, form=form)
 
 if __name__ == '__main__':
