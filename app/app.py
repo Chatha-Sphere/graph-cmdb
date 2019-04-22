@@ -1,5 +1,5 @@
 import os
-from flask import Flask, g, Response, request, jsonify, render_template
+from flask import Flask, g, Response, request, jsonify, render_template, abort
 from py2neo import Graph
 from forms import AssetForm, HardwareForm, DependencyForm
 #from py2neo import Graph
@@ -63,41 +63,21 @@ def index():
 def admin():
     return render_template('admin.html')
 
-@app.route("/admin/create_asset", methods=["GET", "POST"])
-def create_asset():
-    form = AssetForm()
-    if request.method == "POST":
+
+#how about abstracting these three views into one function?
+#show successful submission
+#allow user to add multiple guys in one sitting
+
+@app.route("/admin/create_<entity>", methods=["GET", "POST"])
+def create_entity(entity):
+    entity_dict = {'asset': ("Asset", AssetForm), 'hardware': ("Hardware Item", HardwareForm), 'dependency': ("Dependency", DependencyForm)}
+    if entity_dict.get(entity) is None:
+        abort(404)
+    name = entity_dict[entity][0]
+    form = entity_dict[entity][1]()
+    if form.validate_on_submit():
         print(request)
-        print(request.form)
-    return render_template('create_form.html', 
-        entity_name = "Asset", form=form)
-
-@app.route("/admin/create_hardware", methods=["GET", "POST"])
-def create_hardware():
-    form = HardwareForm()
-    if request.method == "POST":
-        print(request)
-        print(request.form)
-    return render_template("create_form.html",
-        entity_name = "Hardware Item", form=form)
-
-@app.route("/admin/create_dependency", methods=["GET", "POST"])
-def create_dependency():
-    form = DependencyForm()
-    if request.method == "POST":
-        print(request)
-        print(request.form)
-    return render_template('create_form.html',
-        entity_name = "Dependency", form=form)
-
-# @app.route("/api/create_asset/<id>", methods=['GET', 'POST'])
-# def create_asset(id):
-#     content = request
-#     asset_id = content.get('name')
-#     asset_name = content.get('id')
-
-#     db = get_db()
-#     db.run("createAssetQuery"i)
+    return render_template('create_form.html', entity=entity, entity_name=name, form=form)
 
 if __name__ == '__main__':
     app.run(debug=True,host='0.0.0.0')

@@ -12,7 +12,7 @@ class AssetForm(FlaskForm):
     url = StringField("URL")
     submit = SubmitField("Add Asset")
 
-class HardwareForm(Form):
+class HardwareForm(FlaskForm):
     id_ = IntegerField("ID", [validators.InputRequired()])
     serial_number = StringField("Serial Number")
     type_ = StringField("Type") 
@@ -23,7 +23,7 @@ class HardwareForm(Form):
     name = StringField("Name")
     submit = SubmitField("Add Hardware Item")
 
-class DependencyForm(Form):
+class DependencyForm(FlaskForm):
     #child depends on parent with dependency type
     child_id = IntegerField("Child ID", [validators.InputRequired()])
     parent_id = IntegerField("Parent ID", [validators.InputRequired()])
