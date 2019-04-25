@@ -4,9 +4,9 @@ from wtforms import Form, IntegerField, StringField, SubmitField, validators
 
 #do i need an id_ field? or can the ORM generate automatically
 class AssetForm(FlaskForm):
-    id_ = IntegerField("ID", [validators.InputRequired()])
+    #id_ = IntegerField("ID", [validators.InputRequired()])
     name = StringField("Name", [validators.InputRequired()])
-    type_ = StringField("Type")
+    asset_type = StringField("Type")
     loc = StringField("Location")
     desc = StringField("Description")
     access = StringField("Access Rights")
@@ -15,9 +15,9 @@ class AssetForm(FlaskForm):
     submit = SubmitField("Add Asset")
 
 class HardwareForm(FlaskForm):
-    id_ = IntegerField("ID", [validators.InputRequired()])
+    #id_ = IntegerField("ID", [validators.InputRequired()])
     serial_number = StringField("Serial Number")
-    type_ = StringField("Type") 
+    hardware_type = StringField("Type") 
     loc = StringField("Location")
     assigned_to = StringField("Assignee")
     admin_pw = StringField("Admin Password")

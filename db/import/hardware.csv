@@ -4,5 +4,5 @@ id,serial_number,type,location,assigned_to,admin_pw,status,name
 3,9000,mouse,unknown,tdewinne,,missing,
 4,42,tv,NYC-Denali,public,,barely useable (stupid airtame),Denali Tv
 5,3141,Munki server,IT closet,IT Committee,,up,Mac Mini
-6,3142,Windows server,IT closet,IT Committee,,up,AD Windows Machine,
+6,3142,Windows server,IT closet,IT Committee,,up,AD Windows Machine
 7,1969,EUC,unknown,jhall,m00nshot*69,decommissioned,Marcusian Levine's Compy
