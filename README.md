@@ -1,7 +1,15 @@
 #### About
-Manages CKM IT assets/hardware in a graph database/flask admin API.
+Helps administer CKM IT assets and hardware in a Flask API built on a Neo4j database.
 
-#### Instructions
-1. To launch the neo4j docker container locally, `make rundb`
-2. To enter the container, `docker exec -it curious_george /bin/bash`
-3. To run the data import script from inside the container, `cat import/start.cql | NEO4J_USERNAME=neo4j bin/cypher-shell`
+#### Schema Design (WIP)
+ADMIN PANEL
+1.  Create new: assets, hardware items, dependencies
+2.  Update/delete (incl. search bar)
+
+USER VIEW
+1. Table views of entitys, incl. assets by environment (e.g Rancher) and hardware by type (e.g. MacBooks)
+2. Graph views of entities
+    * Select an asset and see related items
+    * Cause-and-effect: what items would be affected by changes to an asset's property?
+
+
