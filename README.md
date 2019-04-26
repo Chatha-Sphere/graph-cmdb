@@ -13,10 +13,13 @@ USER VIEW
     * Cause-and-effect: what items would be affected by changes to an asset's property?
 
 #### Set Up
-How to load test data:
+How to load test data (you only need to do this once):
 1. Exec into the running Neo4j container: `docker exec -it graph_db /bin/bash`
 2. `chmod +x start_db.sh`
 3. `./start_db.sh`
 4. Navigate to `localhost:7474`. Run the query `match(n) return (n);`--you should see some Nodes & Edges!
 
-
+#### Useful Readings
+* CypherQL basics: https://neo4j.com/developer/cypher-query-language/
+* Py2neo: https://py2neo.org/v3/index.html
+* http://flask.pocoo.org/docs/1.0/
